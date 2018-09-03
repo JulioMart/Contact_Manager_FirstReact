@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Contacts from './components/Contacts';
-import Header from './components/Header';
+import Contacts from './components/contact/Contacts';
+import Header from './components/contact/layout/Header';
+import AddContact from './components/contact/AddContact';
 // import logo from "./logo.svg";
 
 //import the class to have access to all
@@ -24,6 +25,7 @@ class App extends Component {
           {/* <h1>The App Component</h1> */}
           <Header branding="Contact Manager" />
           <div className="container">
+            <AddContact></AddContact>
             <Contacts />
           </div>
         </div>
