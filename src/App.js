@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Contacts from './components/contact/Contacts';
-import Header from './components/contact/layout/Header';
+import Header from './components/layout/Header';
 import AddContact from './components/contact/AddContact';
 // import logo from "./logo.svg";
 
