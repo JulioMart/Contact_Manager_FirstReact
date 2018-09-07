@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Consumer } from '../../context';
 import uuid from 'uuid';
 
+import TextInputGroup from '../layout/TextInputGroup';
+
 class AddContact extends Component {
 	state = {
 		name: '',
@@ -47,18 +49,29 @@ class AddContact extends Component {
 							<div className="card-header">Add Contact</div>
 							<div className="card-body">
 								<form onSubmit={this.onSubmit.bind(this, dispatch)}>
-									<div className="form-group">
-										<label htmlFor="name">Name</label>
-										<input
-											type="text"
-											className="form-control form-control-lg"
-											placeholder="Enter name ..."
-											name="name"
-											value={name}
-											onChange={this.onChange}
-										/>
-									</div>
-									<div className="form-group">
+									<TextInputGroup
+										label="Name"
+										name="name"
+										placeholder="Enter name ..."
+										value={name}
+										onChange={this.onChange}
+									/>
+									<TextInputGroup
+										label="Email"
+                    name="email"
+                    type='email'
+										placeholder="Enter email ..."
+										value={email}
+										onChange={this.onChange}
+									/>
+									<TextInputGroup
+										label="Phone"
+										name="phone"
+										placeholder="Enter phone number ..."
+										value={phone}
+										onChange={this.onChange}
+									/>
+									{/* <div className="form-group">
 										<label htmlFor="email">Email</label>
 										<input
 											type="email"
@@ -68,18 +81,8 @@ class AddContact extends Component {
 											value={email}
 											onChange={this.onChange}
 										/>
-									</div>
-									<div className="form-group">
-										<label htmlFor="phone">Phone</label>
-										<input
-											type="text"
-											className="form-control form-control-lg"
-											placeholder="Enter phone..."
-											name="phone"
-											value={phone}
-											onChange={this.onChange}
-										/>
-									</div>
+									</div> */}
+									
 									<input type="submit" className="btn btn-light btn-block" value="Add Contact" />
 								</form>
 							</div>
