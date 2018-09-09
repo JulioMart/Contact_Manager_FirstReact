@@ -5,6 +5,7 @@ import Header from './components/layout/Header';
 import AddContact from './components/contact/AddContact';
 import About from './components/pages/About';
 import NotFound from './components/pages/NotFound';
+import Test from './components/pages/Test';
 // import logo from "./logo.svg";
 
 //import the class to have access to all
@@ -33,7 +34,8 @@ class App extends Component {
 								<Route exact path="/" component={Contacts} />
 								<Route exact path="/contact/add" component={AddContact} />
 								<Route exact path="/about" component={About} />
-								<Route component={NotFound} />>
+								<Route exact path="/test" component={Test} />
+								<Route component={NotFound} />
 							</Switch>
 						</div>
 					</div>

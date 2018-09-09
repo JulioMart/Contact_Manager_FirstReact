@@ -51,14 +51,14 @@ class Contact extends Component {
 											className="fa fa-minus-circle"
 											style={{ cursor: 'pointer', margin: '5px' }}
 										/>
-											<i
-												onClick={this.onDeleteClick.bind(this, contact.id, dispatch)}
-												className="fa fa-remove"
-												style={{ cursor: 'pointer', float: 'right', color: 'red' }}
-											/>
+										<i
+											onClick={this.onDeleteClick.bind(this, contact.id, dispatch)}
+											className="fa fa-remove m-2"
+											style={{ cursor: 'pointer', float: 'right', color: 'red' }}
+										/>
 										<i
 											onClick={this.onEditClick.bind(this, contact.id, dispatch)}
-											className="fa fa-pencil"
+											className="fa fa-pencil m-2"
 											style={{ cursor: 'pointer', float: 'right', color: 'green' }}
 										/>
 									</h4>
