@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { Consumer } from '../../context';
 
 class Contact extends Component {
@@ -14,8 +16,22 @@ class Contact extends Component {
 		});
 	};
 
-	onDeleteClick = (id, dispatch) => {
-		dispatch({ type: 'DELETE_CONTACT', payload: id });
+	// onDeleteClick = (id, dispatch) => {
+	// 	axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`)
+	// 		.then(res => dispatch({ type: 'DELETE_CONTACT', payload: id }));
+	// };
+
+	//ASYNC
+	onDeleteClick = async (id, dispatch) => {
+/* 		try {
+			await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+			dispatch({ type: 'DELETE_CONTACT', payload: id });
+		} catch (e) {
+			await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+			dispatch({ type: 'DELETE_CONTACT', payload: id });
+		} */
+		await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+			dispatch({ type: 'DELETE_CONTACT', payload: id });
 	};
 
 	onEditClick = (id, dispatch) => {
@@ -56,11 +72,9 @@ class Contact extends Component {
 											className="fa fa-remove m-2"
 											style={{ cursor: 'pointer', float: 'right', color: 'red' }}
 										/>
-										<i
-											onClick={this.onEditClick.bind(this, contact.id, dispatch)}
-											className="fa fa-pencil m-2"
-											style={{ cursor: 'pointer', float: 'right', color: 'green' }}
-										/>
+										<Link to={`/contact/edit/${contact.id}`}>
+											<i className="fa fa-pencil m-2" style={{ cursor: 'pointer', float: 'right', color: 'black' }} />
+										</Link>
 									</h4>
 									<ul className="list-group">
 										<li className="list-group-item">Email: {contact.email}</li>

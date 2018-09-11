@@ -5,7 +5,7 @@ import TextInputGroup from '../layout/TextInputGroup';
 // import uuid from 'uuid';
 import axios from 'axios';
 
-class AddContact extends Component {
+class EditContact extends Component {
 	state = {
 		name: '',
 		email: '',
@@ -13,11 +13,25 @@ class AddContact extends Component {
 		errors: {}
 	};
 
+	async componentDidMount() {
+		const { id } = this.props.match.params;
+		const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
+
+		const contact = res.data;
+
+		// Fill input
+		this.setState({
+			name: contact.name,
+			email: contact.email,
+			phone: contact.phone
+		});
+	}
+
 	onChange = (e) => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
 
-	onSubmit = async(dispatch, e) => {
+	onSubmit = async (dispatch, e) => {
 		e.preventDefault();
 
 		const { name, email, phone } = this.state;
@@ -36,20 +50,20 @@ class AddContact extends Component {
 			return;
 		}
 
-		const newContact = {
+		const { id } = this.props.match.params;
+
+		const updContact = {
 			// id: uuid(),
 			name: name,
 			email,
 			phone
 		};
 
-		// axios.post(`https://jsonplaceholder.typicode.com/users`, newContact)
-		// 	.then(res => dispatch({ type: 'ADD_CONTACT', payload: res.data }));
-
 		// async
-		const res = await axios.post(`https://jsonplaceholder.typicode.com/users`, newContact);
-		dispatch({ type: 'ADD_CONTACT', payload: res.data })
+		const res = await axios.put(`https://jsonplaceholder.typicode.com/users/${id}`, updContact);
+		dispatch({ type: 'UPDATE_CONTACT', payload: res.data });
 
+		console.log(res.data);
 
 		this.setState({
 			name: '',
@@ -71,7 +85,7 @@ class AddContact extends Component {
 
 					return (
 						<div className="card mb-3">
-							<div className="card-header">Add Contact</div>
+							<div className="card-header">Edit Contact</div>
 							<div className="card-body">
 								<form onSubmit={this.onSubmit.bind(this, dispatch)}>
 									<TextInputGroup
@@ -111,7 +125,7 @@ class AddContact extends Component {
 										/>
 									</div> */}
 
-									<input type="submit" className="btn btn-light btn-block" value="Add Contact" />
+									<input type="submit" className="btn btn-light btn-block" value="Edit Contact" />
 								</form>
 							</div>
 						</div>
@@ -122,4 +136,4 @@ class AddContact extends Component {
 	}
 }
 
-export default AddContact;
+export default EditContact;

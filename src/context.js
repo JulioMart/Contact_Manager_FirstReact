@@ -13,7 +13,17 @@ const reducer = (state, action) => {
 		case 'ADD_CONTACT':
 			return {
 				...state,
-				contacts: [action.payload, ...state.contacts]
+				contacts: [ action.payload, ...state.contacts ]
+			};
+		case 'UPDATE_CONTACT':
+			return {
+				...state,
+				contacts: state.contacts.map(
+					(contact) => 
+					contact.id === action.payload.id 
+					? (contact = action.payload) //if
+					: contact									 //then
+					)
 			};
 		default:
 			return state;
@@ -42,17 +52,25 @@ export class Provider extends Component {
 			// 	phone: '123-456-7890'
 			// }
 		],
+
 		dispatch: (action) => {
 			this.setState((state) => reducer(state, action));
 		}
 	};
 
-	componentDidMount(){
-		axios.get('https://jsonplaceholder.typicode.com/users')
-			.then(response => this.setState({
-				contacts: response.data
-			}))
+	// ASYNC
+	async componentDidMount() {
+		const res = await axios.get('https://jsonplaceholder.typicode.com/users');
+		this.setState({ contacts: res.data });
 	}
+
+	// componentDidMount() {
+	// 	axios.get('https://jsonplaceholder.typicode.com/users')
+	// 	.then((response) => this.setState({
+	// 			contacts: response.data
+	// 		})
+	// 	);
+	// }
 
 	render() {
 		return <Context.Provider value={this.state}>{this.props.children}</Context.Provider>;
