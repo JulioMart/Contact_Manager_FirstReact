@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'; //HashRouter to use in github pages
 import Contacts from './components/contact/Contacts';
 import Header from './components/layout/Header';
 import AddContact from './components/contact/AddContact';

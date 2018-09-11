@@ -23,7 +23,7 @@ class Contact extends Component {
 
 	//ASYNC
 	onDeleteClick = async (id, dispatch) => {
-/* 		try {
+		/* 		try {
 			await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
 			dispatch({ type: 'DELETE_CONTACT', payload: id });
 		} catch (e) {
@@ -31,7 +31,7 @@ class Contact extends Component {
 			dispatch({ type: 'DELETE_CONTACT', payload: id });
 		} */
 		await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
-			dispatch({ type: 'DELETE_CONTACT', payload: id });
+		dispatch({ type: 'DELETE_CONTACT', payload: id });
 	};
 
 	onEditClick = (id, dispatch) => {
